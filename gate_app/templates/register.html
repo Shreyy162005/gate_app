@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - GATE Portal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        /* Register Box */
+        .register-box {
+            background: rgba(255, 255, 255, 0.95);
+            color: black;
+            padding: 40px;
+            border-radius: 12px;
+            width: 340px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            text-align: center;
+        }
+
+        .register-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* Labels */
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Inputs */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #2c5364;
+            box-shadow: 0 0 5px rgba(44,83,100,0.5);
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #2c5364;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1e3c4d;
+        }
+
+        /* Error */
+        .error {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Login Link */
+        .login {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login a {
+            text-decoration: none;
+            color: #2c5364;
+            font-weight: 500;
+        }
+
+        .login a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="register-box">
+    <h2>Register</h2>
+    <p class="tagline">Create your account to start practicing</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Register</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <div class="login">
+        Already have an account? <a href="/login/">Login</a>
+    </div>
+</div>
+
+</body>
+</html>

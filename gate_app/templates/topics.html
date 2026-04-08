@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Topic</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        /* ✅ Motivational Line */
+        .tagline {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ddd;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        /* Container */
+        .container {
+            padding: 40px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Back Button */
+        .back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .back:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            color: black;
+            padding: 22px;
+            border-radius: 14px;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 500;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            background: #e3f2fd;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+    <h1>Select Topic</h1>
+    <p class="tagline">Consistency is the key to cracking GATE 🚀</p>
+</div>
+
+<!-- Main -->
+<div class="container">
+
+    <a href="/" class="back">← Back to Subjects</a>
+
+    <div class="grid">
+        {% for t in topics %}
+            <a href="/test/{{ subject_id }}_{{ forloop.counter }}">
+                <div class="card">
+                    {{ forloop.counter }}. {{ t }}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>

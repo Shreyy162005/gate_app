@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Result</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            padding: 25px;
+            text-align: center;
+            background: rgba(0,0,0,0.3);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        /* Score Card */
+        .score-card {
+            background: white;
+            color: black;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .score-card h3 {
+            margin: 10px 0;
+        }
+
+        .score {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .percentage {
+            font-size: 20px;
+            margin-top: 5px;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .good { background: #00c853; }
+        .average { background: #ff9800; }
+        .poor { background: #f44336; }
+
+        /* Question Card */
+        .question-card {
+            background: white;
+            color: black;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+        }
+
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+
+        .wrong {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            background: #2196f3;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-btn:hover {
+            background: #1976d2;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+    <h2>Your Test Result</h2>
+</div>
+
+<div class="container">
+
+    {% if error %}
+        <div class="score-card">
+            <div class="score">Result could not be loaded</div>
+            <div class="percentage">{{ error }}</div>
+        </div>
+    {% else %}
+        <!-- Score Section -->
+        <div class="score-card">
+            <div class="score">Score: {{ score }} / {{ total }}</div>
+            <div class="percentage">Percentage: {{ percent }}%</div>
+
+            <!-- Performance Badge -->
+            {% if percent >= 75 %}
+                <div class="badge good">Excellent Performance 🚀</div>
+            {% elif percent >= 50 %}
+                <div class="badge average">Average Performance 👍</div>
+            {% else %}
+                <div class="badge poor">Needs Improvement ⚠️</div>
+            {% endif %}
+        </div>
+
+        <!-- Questions Review -->
+        {% for item in data %}
+    <div class="question-card">
+        <p><b>Q{{ forloop.counter }}. {{ item.question }}</b></p>
+
+        <p>
+            Your Answer:
+            {% if item.user_ans == item.correct_ans %}
+                <span class="correct">{{ item.user_ans }}</span>
+            {% else %}
+                <span class="wrong">{{ item.user_ans|default:"Not Attempted" }}</span>
+            {% endif %}
+        </p>
+
+        <p>
+            Correct Answer:
+            <span class="correct">{{ item.correct_ans }}</span>
+        </p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Back -->
+    <a href="/" class="back-btn">Go to Home</a>
+
+</div>
+
+</body>
+</html>

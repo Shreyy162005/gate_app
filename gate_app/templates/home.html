@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GATE Test Portal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .header p {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        /* Container */
+        .container {
+            padding: 40px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        /* ✅ FIXED GRID (2x2 Layout) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 25px;
+            max-width: 600px; /* keeps it centered */
+            margin: auto;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            color: black;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: #f0f8ff;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        /* ✅ Mobile Responsive */
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr; /* stack on small screens */
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+    <h1>GATE Test Portal</h1>
+    <p>Practice • Learn • Crack GATE 🚀</p>
+</div>
+
+<!-- Main Section -->
+<div class="container">
+    <div class="title">Select Your Subject</div>
+
+    <div class="grid">
+        <a href="/topics/1/">
+            <div class="card">Programming & Data Structures</div>
+        </a>
+
+        <a href="/topics/2/">
+            <div class="card">DBMS</div>
+        </a>
+
+        <a href="/topics/3/">
+            <div class="card">Engineering Mathematics</div>
+        </a>
+
+        <a href="/topics/4/">
+            <div class="card">General Aptitude</div>
+        </a>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    © 2026 GATE Prep Portal | Designed for Students
+</div>
+
+</body>
+</html>

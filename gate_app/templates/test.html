@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GATE Test</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: #111;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .timer {
+            background: red;
+            padding: 5px 12px;
+            border-radius: 6px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .question-card {
+            background: white;
+            color: black;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .option {
+            display: block;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #f1f1f1;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            width: 200px;
+            margin: 20px auto;
+            display: block;
+            padding: 10px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h2>GATE Test</h2>
+    <div class="timer" id="timer">25:00</div>
+</div>
+
+<div class="container">
+
+    <form method="POST" action="/result/" id="testForm">
+        {% csrf_token %}
+        <input type="hidden" name="test_id" value="{{ test_id }}" />
+
+        {% for q in questions %}
+            <div class="question-card">
+                <p><b>Q{{ forloop.counter }}. {{ q.q }}</b></p>
+
+                {% for opt in q.options %}
+                    <label class="option">
+                        <input type="radio"
+                               name="{{ forloop.parentloop.counter0 }}"
+                               value="{{ opt }}">
+                        {{ opt }}
+                    </label>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="submit-btn">Submit Test</button>
+    </form>
+
+</div>
+
+<script>
+    let time = 1500;
+
+    let timer = setInterval(function () {
+        let min = Math.floor(time / 60);
+        let sec = time % 60;
+
+        document.getElementById("timer").innerHTML =
+            min + ":" + (sec < 10 ? "0" : "") + sec;
+
+        time--;
+
+        if (time < 0) {
+            clearInterval(timer);
+            alert("Time's up!");
+            document.getElementById("testForm").submit();
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
